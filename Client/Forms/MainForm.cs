@@ -46,6 +46,9 @@ namespace Client.Forms
 		private async Task UpdateCarList()
 		{
 			deleteCarButton.Enabled = false;
+			addPartReplacementButton.Enabled = false;
+			deletePartReplacementButton.Enabled = false;
+			partReplacementListBox.Items.Clear();
 			var cars = await client.GetCarsAsync(new GetCarsRequest());
 			if (cars == null)
 			{
