@@ -11,31 +11,42 @@ namespace Client.Forms
 			InitializeComponent();
 		}
 
-		private void button1_Click(object sender, EventArgs e)
+		private void addButton_Click(object sender, EventArgs e)
 		{
-			if (textBox1.Text == "")
-			{
-				MessageBox.Show("Необходимо заполнить название", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			if (!ValidateInputs())
 				return;
-			}
-			if (textBox2.Text == "")
+
+			AddPartRequest = new AddPartRequest
 			{
-				MessageBox.Show("Необходимо заполнить описание", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
-			}
-			AddPartRequest = new AddPartRequest()
-			{
-				Name = textBox1.Text,
-				Description = textBox2.Text
+				Name = nameTextBox.Text.Trim(),
+				Description = descriptionTextBox.Text.Trim()
 			};
+
 			DialogResult = DialogResult.OK;
 			Close();
 		}
 
-		private void button2_Click(object sender, EventArgs e)
+		private void cancelButton_Click(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.Cancel;
 			Close();
+		}
+
+		private bool ValidateInputs()
+		{
+			if (string.IsNullOrWhiteSpace(nameTextBox.Text))
+				return ShowError("Необходимо заполнить название");
+
+			if (string.IsNullOrWhiteSpace(descriptionTextBox.Text))
+				return ShowError("Необходимо заполнить описание");
+
+			return true;
+		}
+
+		private bool ShowError(string message)
+		{
+			MessageBox.Show(message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			return false;
 		}
 	}
 }

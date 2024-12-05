@@ -28,80 +28,80 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			label1 = new Label();
-			comboBox1 = new ComboBox();
-			dateTimePicker1 = new DateTimePicker();
-			label2 = new Label();
-			button2 = new Button();
-			button1 = new Button();
+			partComboBoxLabel = new Label();
+			partComboBox = new ComboBox();
+			dateDateTimePicker = new DateTimePicker();
+			dateDateTimePickerLabel = new Label();
+			cancelButton = new Button();
+			addButton = new Button();
 			SuspendLayout();
 			// 
-			// label1
+			// partComboBoxLabel
 			// 
-			label1.AutoSize = true;
-			label1.Location = new Point(12, 9);
-			label1.Name = "label1";
-			label1.Size = new Size(48, 15);
-			label1.TabIndex = 0;
-			label1.Text = "Деталь:";
+			partComboBoxLabel.AutoSize = true;
+			partComboBoxLabel.Location = new Point(12, 9);
+			partComboBoxLabel.Name = "partComboBoxLabel";
+			partComboBoxLabel.Size = new Size(48, 15);
+			partComboBoxLabel.TabIndex = 0;
+			partComboBoxLabel.Text = "Деталь:";
 			// 
-			// comboBox1
+			// partComboBox
 			// 
-			comboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-			comboBox1.FormattingEnabled = true;
-			comboBox1.Items.AddRange(new object[] { "<Выберите деталь>" });
-			comboBox1.Location = new Point(73, 6);
-			comboBox1.Name = "comboBox1";
-			comboBox1.Size = new Size(121, 23);
-			comboBox1.TabIndex = 1;
+			partComboBox.DropDownStyle = ComboBoxStyle.DropDownList;
+			partComboBox.FormattingEnabled = true;
+			partComboBox.Items.AddRange(new object[] { "<Выберите деталь>" });
+			partComboBox.Location = new Point(73, 6);
+			partComboBox.Name = "partComboBox";
+			partComboBox.Size = new Size(121, 23);
+			partComboBox.TabIndex = 1;
 			// 
-			// dateTimePicker1
+			// dateDateTimePicker
 			// 
-			dateTimePicker1.Location = new Point(12, 50);
-			dateTimePicker1.Name = "dateTimePicker1";
-			dateTimePicker1.Size = new Size(182, 23);
-			dateTimePicker1.TabIndex = 3;
+			dateDateTimePicker.Location = new Point(12, 50);
+			dateDateTimePicker.Name = "dateDateTimePicker";
+			dateDateTimePicker.Size = new Size(182, 23);
+			dateDateTimePicker.TabIndex = 3;
 			// 
-			// label2
+			// dateDateTimePickerLabel
 			// 
-			label2.AutoSize = true;
-			label2.Location = new Point(12, 32);
-			label2.Name = "label2";
-			label2.Size = new Size(80, 15);
-			label2.TabIndex = 2;
-			label2.Text = "Дата замены:";
+			dateDateTimePickerLabel.AutoSize = true;
+			dateDateTimePickerLabel.Location = new Point(12, 32);
+			dateDateTimePickerLabel.Name = "dateDateTimePickerLabel";
+			dateDateTimePickerLabel.Size = new Size(80, 15);
+			dateDateTimePickerLabel.TabIndex = 2;
+			dateDateTimePickerLabel.Text = "Дата замены:";
 			// 
-			// button2
+			// cancelButton
 			// 
-			button2.Location = new Point(111, 99);
-			button2.Name = "button2";
-			button2.Size = new Size(75, 23);
-			button2.TabIndex = 5;
-			button2.Text = "Отмена";
-			button2.UseVisualStyleBackColor = true;
-			button2.Click += button2_Click;
+			cancelButton.Location = new Point(111, 99);
+			cancelButton.Name = "cancelButton";
+			cancelButton.Size = new Size(75, 23);
+			cancelButton.TabIndex = 5;
+			cancelButton.Text = "Отмена";
+			cancelButton.UseVisualStyleBackColor = true;
+			cancelButton.Click += cancelButton_Click;
 			// 
-			// button1
+			// addButton
 			// 
-			button1.Location = new Point(22, 99);
-			button1.Name = "button1";
-			button1.Size = new Size(75, 23);
-			button1.TabIndex = 4;
-			button1.Text = "Добавить";
-			button1.UseVisualStyleBackColor = true;
-			button1.Click += button1_Click;
+			addButton.Location = new Point(22, 99);
+			addButton.Name = "addButton";
+			addButton.Size = new Size(75, 23);
+			addButton.TabIndex = 4;
+			addButton.Text = "Добавить";
+			addButton.UseVisualStyleBackColor = true;
+			addButton.Click += addButton_Click;
 			// 
 			// PartReplacementForm
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(212, 133);
-			Controls.Add(button2);
-			Controls.Add(button1);
-			Controls.Add(label2);
-			Controls.Add(dateTimePicker1);
-			Controls.Add(comboBox1);
-			Controls.Add(label1);
+			Controls.Add(cancelButton);
+			Controls.Add(addButton);
+			Controls.Add(dateDateTimePickerLabel);
+			Controls.Add(dateDateTimePicker);
+			Controls.Add(partComboBox);
+			Controls.Add(partComboBoxLabel);
 			FormBorderStyle = FormBorderStyle.FixedDialog;
 			MaximizeBox = false;
 			MinimizeBox = false;
@@ -114,11 +114,11 @@
 
 		#endregion
 
-		private Label label1;
-		private ComboBox comboBox1;
-		private DateTimePicker dateTimePicker1;
-		private Label label2;
-		private Button button2;
-		private Button button1;
+		private Label partComboBoxLabel;
+		private ComboBox partComboBox;
+		private DateTimePicker dateDateTimePicker;
+		private Label dateDateTimePickerLabel;
+		private Button cancelButton;
+		private Button addButton;
 	}
 }

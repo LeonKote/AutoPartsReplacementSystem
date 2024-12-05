@@ -28,97 +28,97 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			label1 = new Label();
-			label2 = new Label();
-			textBox2 = new TextBox();
-			textBox1 = new TextBox();
-			label3 = new Label();
-			textBox3 = new TextBox();
-			button1 = new Button();
-			button2 = new Button();
+			makeTextBoxLabel = new Label();
+			modelTextBoxLabel = new Label();
+			modelTextBox = new TextBox();
+			makeTextBox = new TextBox();
+			yearTextBoxLabel = new Label();
+			yearTextBox = new TextBox();
+			addButton = new Button();
+			cancelButton = new Button();
 			SuspendLayout();
 			// 
-			// label1
+			// makeTextBoxLabel
 			// 
-			label1.AutoSize = true;
-			label1.Location = new Point(12, 15);
-			label1.Name = "label1";
-			label1.Size = new Size(46, 15);
-			label1.TabIndex = 0;
-			label1.Text = "Марка:";
+			makeTextBoxLabel.AutoSize = true;
+			makeTextBoxLabel.Location = new Point(12, 15);
+			makeTextBoxLabel.Name = "makeTextBoxLabel";
+			makeTextBoxLabel.Size = new Size(46, 15);
+			makeTextBoxLabel.TabIndex = 0;
+			makeTextBoxLabel.Text = "Марка:";
 			// 
-			// label2
+			// modelTextBoxLabel
 			// 
-			label2.AutoSize = true;
-			label2.Location = new Point(12, 44);
-			label2.Name = "label2";
-			label2.Size = new Size(53, 15);
-			label2.TabIndex = 2;
-			label2.Text = "Модель:";
+			modelTextBoxLabel.AutoSize = true;
+			modelTextBoxLabel.Location = new Point(12, 44);
+			modelTextBoxLabel.Name = "modelTextBoxLabel";
+			modelTextBoxLabel.Size = new Size(53, 15);
+			modelTextBoxLabel.TabIndex = 2;
+			modelTextBoxLabel.Text = "Модель:";
 			// 
-			// textBox2
+			// modelTextBox
 			// 
-			textBox2.Location = new Point(96, 41);
-			textBox2.Name = "textBox2";
-			textBox2.Size = new Size(100, 23);
-			textBox2.TabIndex = 3;
+			modelTextBox.Location = new Point(96, 41);
+			modelTextBox.Name = "modelTextBox";
+			modelTextBox.Size = new Size(100, 23);
+			modelTextBox.TabIndex = 3;
 			// 
-			// textBox1
+			// makeTextBox
 			// 
-			textBox1.Location = new Point(96, 12);
-			textBox1.Name = "textBox1";
-			textBox1.Size = new Size(100, 23);
-			textBox1.TabIndex = 1;
+			makeTextBox.Location = new Point(96, 12);
+			makeTextBox.Name = "makeTextBox";
+			makeTextBox.Size = new Size(100, 23);
+			makeTextBox.TabIndex = 1;
 			// 
-			// label3
+			// yearTextBoxLabel
 			// 
-			label3.AutoSize = true;
-			label3.Location = new Point(12, 73);
-			label3.Name = "label3";
-			label3.Size = new Size(78, 15);
-			label3.TabIndex = 4;
-			label3.Text = "Год выпуска:";
+			yearTextBoxLabel.AutoSize = true;
+			yearTextBoxLabel.Location = new Point(12, 73);
+			yearTextBoxLabel.Name = "yearTextBoxLabel";
+			yearTextBoxLabel.Size = new Size(78, 15);
+			yearTextBoxLabel.TabIndex = 4;
+			yearTextBoxLabel.Text = "Год выпуска:";
 			// 
-			// textBox3
+			// yearTextBox
 			// 
-			textBox3.Location = new Point(96, 70);
-			textBox3.Name = "textBox3";
-			textBox3.Size = new Size(100, 23);
-			textBox3.TabIndex = 5;
+			yearTextBox.Location = new Point(96, 70);
+			yearTextBox.Name = "yearTextBox";
+			yearTextBox.Size = new Size(100, 23);
+			yearTextBox.TabIndex = 5;
 			// 
-			// button1
+			// addButton
 			// 
-			button1.Location = new Point(22, 99);
-			button1.Name = "button1";
-			button1.Size = new Size(75, 23);
-			button1.TabIndex = 6;
-			button1.Text = "Добавить";
-			button1.UseVisualStyleBackColor = true;
-			button1.Click += button1_Click;
+			addButton.Location = new Point(22, 99);
+			addButton.Name = "addButton";
+			addButton.Size = new Size(75, 23);
+			addButton.TabIndex = 6;
+			addButton.Text = "Добавить";
+			addButton.UseVisualStyleBackColor = true;
+			addButton.Click += addButton_Click;
 			// 
-			// button2
+			// cancelButton
 			// 
-			button2.Location = new Point(111, 99);
-			button2.Name = "button2";
-			button2.Size = new Size(75, 23);
-			button2.TabIndex = 7;
-			button2.Text = "Отмена";
-			button2.UseVisualStyleBackColor = true;
-			button2.Click += button2_Click;
+			cancelButton.Location = new Point(111, 99);
+			cancelButton.Name = "cancelButton";
+			cancelButton.Size = new Size(75, 23);
+			cancelButton.TabIndex = 7;
+			cancelButton.Text = "Отмена";
+			cancelButton.UseVisualStyleBackColor = true;
+			cancelButton.Click += cancelButton_Click;
 			// 
 			// CarForm
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(212, 133);
-			Controls.Add(button2);
-			Controls.Add(button1);
-			Controls.Add(textBox3);
-			Controls.Add(label3);
-			Controls.Add(textBox2);
-			Controls.Add(label2);
-			Controls.Add(textBox1);
-			Controls.Add(label1);
+			Controls.Add(cancelButton);
+			Controls.Add(addButton);
+			Controls.Add(yearTextBox);
+			Controls.Add(yearTextBoxLabel);
+			Controls.Add(modelTextBox);
+			Controls.Add(modelTextBoxLabel);
+			Controls.Add(makeTextBox);
+			Controls.Add(makeTextBoxLabel);
 			FormBorderStyle = FormBorderStyle.FixedDialog;
 			MaximizeBox = false;
 			MinimizeBox = false;
@@ -131,13 +131,13 @@
 
 		#endregion
 
-		private Label label1;
-		private Label label2;
-		private TextBox textBox2;
-		private TextBox textBox1;
-		private Label label3;
-		private TextBox textBox3;
-		private Button button1;
-		private Button button2;
+		private Label makeTextBoxLabel;
+		private Label modelTextBoxLabel;
+		private TextBox modelTextBox;
+		private TextBox makeTextBox;
+		private Label yearTextBoxLabel;
+		private TextBox yearTextBox;
+		private Button addButton;
+		private Button cancelButton;
 	}
 }

@@ -12,32 +12,46 @@ namespace Client.Forms
 		public PartReplacementForm(List<Part> parts)
 		{
 			InitializeComponent();
-			comboBox1.SelectedIndex = 0;
+			partComboBox.SelectedIndex = 0;
 			this.parts = parts;
-			comboBox1.Items.AddRange(parts.Select(x => x.Name).ToArray());
+			partComboBox.Items.AddRange(parts.Select(x => x.Name).ToArray());
 		}
 
-		private void button1_Click(object sender, EventArgs e)
+		private void addButton_Click(object sender, EventArgs e)
 		{
-			int index = comboBox1.SelectedIndex - 1;
-			if (index == -1)
-			{
-				MessageBox.Show("Необходимо выбрать деталь", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			if (!ValidateInputs())
 				return;
-			}
+
+			int index = partComboBox.SelectedIndex - 1;
 			AddPartReplacementRequest = new AddPartReplacementRequest()
 			{
 				PartId = parts[index].Id,
-				Date = DateOnly.FromDateTime(dateTimePicker1.Value)
+				Date = DateOnly.FromDateTime(dateDateTimePicker.Value)
 			};
+
 			DialogResult = DialogResult.OK;
 			Close();
 		}
 
-		private void button2_Click(object sender, EventArgs e)
+		private void cancelButton_Click(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.Cancel;
 			Close();
+		}
+
+		private bool ValidateInputs()
+		{
+			int index = partComboBox.SelectedIndex - 1;
+			if (index == -1)
+				return ShowError("Необходимо выбрать деталь");
+
+			return true;
+		}
+
+		private bool ShowError(string message)
+		{
+			MessageBox.Show(message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			return false;
 		}
 	}
 }

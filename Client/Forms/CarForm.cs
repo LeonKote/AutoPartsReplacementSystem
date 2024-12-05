@@ -11,42 +11,46 @@ namespace Client.Forms
 			InitializeComponent();
 		}
 
-		private void button1_Click(object sender, EventArgs e)
+		private void addButton_Click(object sender, EventArgs e)
 		{
-			if (textBox1.Text == "")
-			{
-				MessageBox.Show("Необходимо заполнить марку", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			if (!ValidateInputs())
 				return;
-			}
-			if (textBox2.Text == "")
-			{
-				MessageBox.Show("Необходимо заполнить модель", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
-			}
-			if (textBox3.Text == "")
-			{
-				MessageBox.Show("Необходимо заполнить год выпуска", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
-			}
-			if (!int.TryParse(textBox3.Text, out int year) || year < 0)
-			{
-				MessageBox.Show("Год выпуска некорректен", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
-			}
+
 			AddCarRequest = new AddCarRequest()
 			{
-				Make = textBox1.Text,
-				Model = textBox2.Text,
-				Year = year
+				Make = makeTextBox.Text.Trim(),
+				Model = modelTextBox.Text.Trim(),
+				Year = int.Parse(yearTextBox.Text.Trim())
 			};
+
 			DialogResult = DialogResult.OK;
 			Close();
 		}
 
-		private void button2_Click(object sender, EventArgs e)
+		private void cancelButton_Click(object sender, EventArgs e)
 		{
 			DialogResult = DialogResult.Cancel;
 			Close();
+		}
+
+		private bool ValidateInputs()
+		{
+			if (string.IsNullOrWhiteSpace(makeTextBox.Text))
+				return ShowError("Необходимо заполнить марку");
+
+			if (string.IsNullOrWhiteSpace(modelTextBox.Text))
+				return ShowError("Необходимо заполнить модель");
+
+			if (string.IsNullOrWhiteSpace(yearTextBox.Text) || !int.TryParse(yearTextBox.Text, out int year) || year < 0)
+				return ShowError("Год выпуска некорректен");
+
+			return true;
+		}
+
+		private bool ShowError(string message)
+		{
+			MessageBox.Show(message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			return false;
 		}
 	}
 }

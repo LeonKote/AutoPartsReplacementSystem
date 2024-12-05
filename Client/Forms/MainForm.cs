@@ -1,4 +1,4 @@
-using Api.Modules.Car.Dto;
+п»їusing Api.Modules.Car.Dto;
 using Domain.Models;
 
 namespace Client.Forms
@@ -25,7 +25,7 @@ namespace Client.Forms
 
 		#region Cars
 
-		private async void button1_Click(object sender, EventArgs e)
+		private async void addCarButton_Click(object sender, EventArgs e)
 		{
 			using var form = new CarForm();
 			if (form.ShowDialog() == DialogResult.Cancel)
@@ -35,9 +35,9 @@ namespace Client.Forms
 			await UpdateCarList();
 		}
 
-		private async void button2_Click(object sender, EventArgs e)
+		private async void deleteCarButton_Click(object sender, EventArgs e)
 		{
-			int index = listBox1.SelectedIndex;
+			int index = carListBox.SelectedIndex;
 			var car = cars[index];
 			await client.DeleteCarAsync(car.Id);
 			await UpdateCarList();
@@ -45,60 +45,60 @@ namespace Client.Forms
 
 		private async Task UpdateCarList()
 		{
-			button2.Enabled = false;
+			deleteCarButton.Enabled = false;
 			var cars = await client.GetCarsAsync(new GetCarsRequest());
 			if (cars == null)
 			{
-				MessageBox.Show("Не удалось получить список автомобилей", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				ShowError("РќРµ СѓРґР°Р»РѕСЃСЊ РїРѕР»СѓС‡РёС‚СЊ СЃРїРёСЃРѕРє Р°РІС‚РѕРјРѕР±РёР»РµР№");
 				return;
 			}
 
 			this.cars = cars;
-			listBox1.Items.Clear();
-			listBox1.Items.AddRange(cars.Select(x => $"{x.Make} {x.Model} {x.Year}").ToArray());
+			carListBox.Items.Clear();
+			carListBox.Items.AddRange(cars.Select(x => $"{x.Make} {x.Model} {x.Year}").ToArray());
 		}
 
-		private async void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+		private async void carListBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			int index = listBox1.SelectedIndex;
+			int index = carListBox.SelectedIndex;
 			var car = cars[index];
-			button2.Enabled = true;
+			deleteCarButton.Enabled = true;
 			await UpdatePartReplacementsList(car.Id);
 		}
 
-		private void listBox1_DoubleClick(object sender, EventArgs e)
+		private void carListBox_DoubleClick(object sender, EventArgs e)
 		{
-			int index = listBox1.SelectedIndex;
+			int index = carListBox.SelectedIndex;
 			if (index == -1)
 				return;
 
 			var car = cars[index];
-			MessageBox.Show($"Марка: {car.Make}\n" +
-							$"Модель: {car.Model}\n" +
-							$"Год выпуска: {car.Year}", "Данные об автомобиле");
+			MessageBox.Show($"РњР°СЂРєР°: {car.Make}\n" +
+							$"РњРѕРґРµР»СЊ: {car.Model}\n" +
+							$"Р“РѕРґ РІС‹РїСѓСЃРєР°: {car.Year}", "Р”Р°РЅРЅС‹Рµ РѕР± Р°РІС‚РѕРјРѕР±РёР»Рµ");
 		}
 
 		#endregion
 
 		#region PartReplacements
 
-		private async void button3_Click(object sender, EventArgs e)
+		private async void addPartReplacementButton_Click(object sender, EventArgs e)
 		{
 			using var form = new PartReplacementForm(parts);
 			if (form.ShowDialog() == DialogResult.Cancel)
 				return;
 
-			int index = listBox1.SelectedIndex;
+			int index = carListBox.SelectedIndex;
 			var car = cars[index];
 			form.AddPartReplacementRequest!.CarId = car.Id;
 			await client.AddPartReplacementAsync(form.AddPartReplacementRequest!);
 			await UpdatePartReplacementsList(car.Id);
 		}
 
-		private async void button4_Click(object sender, EventArgs e)
+		private async void deletePartReplacementButton_Click(object sender, EventArgs e)
 		{
-			int carIndex = listBox1.SelectedIndex;
-			int partIndex = listBox2.SelectedIndex;
+			int carIndex = carListBox.SelectedIndex;
+			int partIndex = partReplacementListBox.SelectedIndex;
 			var car = cars[carIndex];
 			var part = partReplacements[partIndex];
 			await client.DeletePartReplacementAsync(part.Id);
@@ -107,42 +107,42 @@ namespace Client.Forms
 
 		private async Task UpdatePartReplacementsList(Guid carId)
 		{
-			button4.Enabled = false;
+			deletePartReplacementButton.Enabled = false;
 			var partReplacements = await client.GetPartReplacementsAsync(carId);
 			if (partReplacements == null)
 			{
-				MessageBox.Show("Не удалось получить список замененных деталей", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				ShowError("РќРµ СѓРґР°Р»РѕСЃСЊ РїРѕР»СѓС‡РёС‚СЊ СЃРїРёСЃРѕРє Р·Р°РјРµРЅРµРЅРЅС‹С… РґРµС‚Р°Р»РµР№");
 				return;
 			}
 
 			this.partReplacements = partReplacements;
-			listBox2.Items.Clear();
-			listBox2.Items.AddRange(partReplacements.Select(x => x.Part.Name).ToArray());
-			button3.Enabled = true;
+			partReplacementListBox.Items.Clear();
+			partReplacementListBox.Items.AddRange(partReplacements.Select(x => x.Part.Name).ToArray());
+			addPartReplacementButton.Enabled = true;
 		}
 
-		private void listBox2_SelectedIndexChanged(object sender, EventArgs e)
+		private void partReplacementListBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			button4.Enabled = true;
+			deletePartReplacementButton.Enabled = true;
 		}
 
-		private void listBox2_DoubleClick(object sender, EventArgs e)
+		private void partReplacementListBox_DoubleClick(object sender, EventArgs e)
 		{
-			int index = listBox2.SelectedIndex;
+			int index = partReplacementListBox.SelectedIndex;
 			if (index == -1)
 				return;
 
 			var partReplacement = partReplacements[index];
-			MessageBox.Show($"Название: {partReplacement.Part.Name}\n" +
-							$"Описание: {partReplacement.Part.Description}\n" +
-							$"Дата замены: {partReplacement.Date}", "Данные о замененной детали");
+			MessageBox.Show($"РќР°Р·РІР°РЅРёРµ: {partReplacement.Part.Name}\n" +
+							$"РћРїРёСЃР°РЅРёРµ: {partReplacement.Part.Description}\n" +
+							$"Р”Р°С‚Р° Р·Р°РјРµРЅС‹: {partReplacement.Date}", "Р”Р°РЅРЅС‹Рµ Рѕ Р·Р°РјРµРЅРµРЅРЅРѕР№ РґРµС‚Р°Р»Рё");
 		}
 
 		#endregion
 
 		#region Parts
 
-		private async void button5_Click(object sender, EventArgs e)
+		private async void addPartButton_Click(object sender, EventArgs e)
 		{
 			using var form = new PartForm();
 			if (form.ShowDialog() == DialogResult.Cancel)
@@ -152,9 +152,9 @@ namespace Client.Forms
 			await UpdatePartsList();
 		}
 
-		private async void button6_Click(object sender, EventArgs e)
+		private async void deletePartButton_Click(object sender, EventArgs e)
 		{
-			int index = listBox3.SelectedIndex;
+			int index = partListBox.SelectedIndex;
 			var part = parts[index];
 			await client.DeletePartAsync(part.Id);
 			await UpdatePartsList();
@@ -165,31 +165,37 @@ namespace Client.Forms
 			var parts = await client.GetPartsAsync();
 			if (parts == null)
 			{
-				MessageBox.Show("Не удалось получить список деталей", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				ShowError("РќРµ СѓРґР°Р»РѕСЃСЊ РїРѕР»СѓС‡РёС‚СЊ СЃРїРёСЃРѕРє РґРµС‚Р°Р»РµР№");
 				return;
 			}
 
 			this.parts = parts;
-			listBox3.Items.Clear();
-			listBox3.Items.AddRange(parts.Select(x => x.Name).ToArray());
+			partListBox.Items.Clear();
+			partListBox.Items.AddRange(parts.Select(x => x.Name).ToArray());
 		}
 
-		private void listBox3_SelectedIndexChanged(object sender, EventArgs e)
+		private void PartListBox_SelectedIndexChanged(object sender, EventArgs e)
 		{
-			button6.Enabled = true;
+			deletePartButton.Enabled = true;
 		}
 
-		private void listBox3_DoubleClick(object sender, EventArgs e)
+		private void PartListBox_DoubleClick(object sender, EventArgs e)
 		{
-			int index = listBox3.SelectedIndex;
+			int index = partListBox.SelectedIndex;
 			if (index == -1)
 				return;
 
 			var part = parts[index];
-			MessageBox.Show($"Название: {part.Name}\n" +
-							$"Описание: {part.Description}", "Данные о детали");
+			MessageBox.Show($"РќР°Р·РІР°РЅРёРµ: {part.Name}\n" +
+							$"РћРїРёСЃР°РЅРёРµ: {part.Description}", "Р”Р°РЅРЅС‹Рµ Рѕ РґРµС‚Р°Р»Рё");
 		}
 
 		#endregion
+
+		private bool ShowError(string message)
+		{
+			MessageBox.Show(message, "РћС€РёР±РєР°", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			return false;
+		}
 	}
 }

@@ -28,79 +28,79 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			textBox1 = new TextBox();
-			label1 = new Label();
-			label2 = new Label();
-			textBox2 = new TextBox();
-			button2 = new Button();
-			button1 = new Button();
+			nameTextBox = new TextBox();
+			nameTextBoxLabel = new Label();
+			descriptionTextBoxLabel = new Label();
+			descriptionTextBox = new TextBox();
+			cancelButton = new Button();
+			addButton = new Button();
 			SuspendLayout();
 			// 
-			// textBox1
+			// nameTextBox
 			// 
-			textBox1.Location = new Point(96, 12);
-			textBox1.Name = "textBox1";
-			textBox1.Size = new Size(100, 23);
-			textBox1.TabIndex = 1;
+			nameTextBox.Location = new Point(96, 12);
+			nameTextBox.Name = "nameTextBox";
+			nameTextBox.Size = new Size(100, 23);
+			nameTextBox.TabIndex = 1;
 			// 
-			// label1
+			// nameTextBoxLabel
 			// 
-			label1.AutoSize = true;
-			label1.Location = new Point(12, 15);
-			label1.Name = "label1";
-			label1.Size = new Size(62, 15);
-			label1.TabIndex = 0;
-			label1.Text = "Название:";
+			nameTextBoxLabel.AutoSize = true;
+			nameTextBoxLabel.Location = new Point(12, 15);
+			nameTextBoxLabel.Name = "nameTextBoxLabel";
+			nameTextBoxLabel.Size = new Size(62, 15);
+			nameTextBoxLabel.TabIndex = 0;
+			nameTextBoxLabel.Text = "Название:";
 			// 
-			// label2
+			// descriptionTextBoxLabel
 			// 
-			label2.AutoSize = true;
-			label2.Location = new Point(12, 38);
-			label2.Name = "label2";
-			label2.Size = new Size(65, 15);
-			label2.TabIndex = 2;
-			label2.Text = "Описание:";
+			descriptionTextBoxLabel.AutoSize = true;
+			descriptionTextBoxLabel.Location = new Point(12, 38);
+			descriptionTextBoxLabel.Name = "descriptionTextBoxLabel";
+			descriptionTextBoxLabel.Size = new Size(65, 15);
+			descriptionTextBoxLabel.TabIndex = 2;
+			descriptionTextBoxLabel.Text = "Описание:";
 			// 
-			// textBox2
+			// descriptionTextBox
 			// 
-			textBox2.Location = new Point(12, 56);
-			textBox2.Multiline = true;
-			textBox2.Name = "textBox2";
-			textBox2.ScrollBars = ScrollBars.Vertical;
-			textBox2.Size = new Size(184, 37);
-			textBox2.TabIndex = 3;
+			descriptionTextBox.Location = new Point(12, 56);
+			descriptionTextBox.Multiline = true;
+			descriptionTextBox.Name = "descriptionTextBox";
+			descriptionTextBox.ScrollBars = ScrollBars.Vertical;
+			descriptionTextBox.Size = new Size(184, 37);
+			descriptionTextBox.TabIndex = 3;
 			// 
-			// button2
+			// cancelButton
 			// 
-			button2.Location = new Point(111, 99);
-			button2.Name = "button2";
-			button2.Size = new Size(75, 23);
-			button2.TabIndex = 5;
-			button2.Text = "Отмена";
-			button2.UseVisualStyleBackColor = true;
-			button2.Click += button2_Click;
+			cancelButton.Location = new Point(111, 99);
+			cancelButton.Name = "cancelButton";
+			cancelButton.Size = new Size(75, 23);
+			cancelButton.TabIndex = 5;
+			cancelButton.Text = "Отмена";
+			cancelButton.UseVisualStyleBackColor = true;
+			cancelButton.Click += cancelButton_Click;
 			// 
-			// button1
+			// addButton
 			// 
-			button1.Location = new Point(22, 99);
-			button1.Name = "button1";
-			button1.Size = new Size(75, 23);
-			button1.TabIndex = 4;
-			button1.Text = "Добавить";
-			button1.UseVisualStyleBackColor = true;
-			button1.Click += button1_Click;
+			addButton.Location = new Point(22, 99);
+			addButton.Name = "addButton";
+			addButton.Size = new Size(75, 23);
+			addButton.TabIndex = 4;
+			addButton.Text = "Добавить";
+			addButton.UseVisualStyleBackColor = true;
+			addButton.Click += addButton_Click;
 			// 
 			// PartForm
 			// 
 			AutoScaleDimensions = new SizeF(7F, 15F);
 			AutoScaleMode = AutoScaleMode.Font;
 			ClientSize = new Size(212, 133);
-			Controls.Add(button2);
-			Controls.Add(button1);
-			Controls.Add(textBox2);
-			Controls.Add(label2);
-			Controls.Add(textBox1);
-			Controls.Add(label1);
+			Controls.Add(cancelButton);
+			Controls.Add(addButton);
+			Controls.Add(descriptionTextBox);
+			Controls.Add(descriptionTextBoxLabel);
+			Controls.Add(nameTextBox);
+			Controls.Add(nameTextBoxLabel);
 			FormBorderStyle = FormBorderStyle.FixedDialog;
 			MaximizeBox = false;
 			MinimizeBox = false;
@@ -113,11 +113,11 @@
 
 		#endregion
 
-		private TextBox textBox1;
-		private Label label1;
-		private Label label2;
-		private TextBox textBox2;
-		private Button button2;
-		private Button button1;
+		private TextBox nameTextBox;
+		private Label nameTextBoxLabel;
+		private Label descriptionTextBoxLabel;
+		private TextBox descriptionTextBox;
+		private Button cancelButton;
+		private Button addButton;
 	}
 }
