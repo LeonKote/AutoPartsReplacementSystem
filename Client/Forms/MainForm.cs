@@ -14,7 +14,7 @@ namespace Client.Forms
 		public MainForm()
 		{
 			InitializeComponent();
-			client = new ApiClient("https://wizzasd.ru:7281");
+			client = new ApiClient("https://localhost:7281");
 		}
 
 		private async void Form1_Load(object sender, EventArgs e)
@@ -87,7 +87,7 @@ namespace Client.Forms
 
 		private async void addPartReplacementButton_Click(object sender, EventArgs e)
 		{
-			using var form = new PartReplacementForm(parts);
+			using var form = new PartReplacementForm(parts, partListBox.SelectedIndex);
 			if (form.ShowDialog() == DialogResult.Cancel)
 				return;
 

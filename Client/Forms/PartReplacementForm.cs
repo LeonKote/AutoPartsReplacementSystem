@@ -9,12 +9,12 @@ namespace Client.Forms
 
 		public AddPartReplacementRequest? AddPartReplacementRequest { get; private set; }
 
-		public PartReplacementForm(List<Part> parts)
+		public PartReplacementForm(List<Part> parts, int idx)
 		{
 			InitializeComponent();
-			partComboBox.SelectedIndex = 0;
 			this.parts = parts;
 			partComboBox.Items.AddRange(parts.Select(x => x.Name).ToArray());
+			partComboBox.SelectedIndex = idx > -1 ? idx + 1 : 0;
 		}
 
 		private void addButton_Click(object sender, EventArgs e)
