@@ -1,15 +1,16 @@
 using CSharpFunctionalExtensions;
 using Infrastructure.Services.Car.Dto;
+using Infrastructure.Services.CarRepository;
 using Infrastructure.Storage;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Services.Car;
 
-public class CarService(AppDbContext dbContext) : ICarService
+public class CarService(ICarRepository carRepository) : ICarService
 {
     public async Task<Result<List<Domain.Models.Car>, string>> GetCarsAsync(GetCarsBody body)
     {
-        var query = dbContext.Cars.AsQueryable();
+        var query = carRepository.Get();
 
         if (!string.IsNullOrEmpty(body.Make))
         {
@@ -38,23 +39,15 @@ public class CarService(AppDbContext dbContext) : ICarService
     public async Task<Result<Guid, string>> AddCarAsync(AddCarBody body)
     {
         var car = new Domain.Models.Car(body.Make, body.Model, body.Year);
-        dbContext.Cars.Add(car);
+        await carRepository.AddAsync(car);
 
-        await dbContext.SaveChangesAsync();
         return car.Id;
     }
 
     public async Task<UnitResult<string>> DeleteCarAsync(Guid carId)
     {
-        var car = await dbContext.Cars.FirstOrDefaultAsync(c => c.Id == carId);
+        await carRepository.RemoveAsync(carId);
 
-        if (car is null)
-        {
-            return "Машина не найдена";
-        }
-        
-        dbContext.Cars.Remove(car);
-        await dbContext.SaveChangesAsync();
         return UnitResult.Success<string>();
     }
 }

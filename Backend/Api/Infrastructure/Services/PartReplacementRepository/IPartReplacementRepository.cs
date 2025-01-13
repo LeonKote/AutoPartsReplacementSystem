@@ -1,0 +1,3 @@
+namespace Infrastructure.Services.PartReplacementRepository;
+
+public interface IPartReplacementRepository: IRepository<Domain.Models.PartReplacement>;
