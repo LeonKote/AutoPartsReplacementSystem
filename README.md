@@ -75,6 +75,34 @@
 
 ---
 
+## 🔧 Локальный запуск
+
+1. Убедитесь, что установлен **.NET 8 SDK** и **PostgreSQL**.
+2. Клонируйте репозиторий:
+   ```bash
+   git clone https://github.com/your-repo-name.git
+   cd your-repo-name
+   ```
+3. Настройте строку подключения в `appsettings.json`:
+   ```json
+   {
+       "ConnectionStrings": {
+           "Db": "Host=localhost;Port=5432;Database=CarService;Username=postgres;Password=yourpassword"
+       }
+   }
+   ```
+4. Примените миграции:
+   ```bash
+   dotnet ef database update
+   ```
+5. Запустите приложение:
+   ```bash
+   dotnet run
+   ```
+6. Откройте Swagger-документацию по адресу: [http://localhost:7281/swagger](http://localhost:7281/swagger).
+
+---
+
 ## 👨‍💻 Проект выполнили
 
 - **Сырятов Максим АТ-01 - идея, тестирование, оформление**
