@@ -99,7 +99,7 @@
    ```bash
    dotnet run
    ```
-6. Откройте Swagger-документацию по адресу: [http://localhost:7281/swagger](http://localhost:7281/swagger).
+6. Откройте Swagger-документацию по адресу: [https://localhost:7281/swagger/index.html](https://localhost:7281/swagger/index.html).
 
 ---
 
