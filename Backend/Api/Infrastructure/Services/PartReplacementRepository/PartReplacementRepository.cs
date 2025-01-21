@@ -11,7 +11,7 @@ public class PartReplacementRepository(AppDbContext dbContext) : IPartReplacemen
 
 	public async Task AddAsync(Domain.Models.PartReplacement model)
 	{
-		dbContext.Remove(model);
+		dbContext.Add(model);
 		await dbContext.SaveChangesAsync();
 	}
 

@@ -30,17 +30,13 @@ public class PartReplacementService(
 		var car = await carRepository.Get()
 			.FirstOrDefaultAsync(c => c.Id == body.CarId);
 		if (car is null)
-		{
 			return "Машина не найдена";
-		}
 
 		var part = await partRepository.Get()
 			.FirstOrDefaultAsync(p => p.Id == body.PartId);
 		if (part is null)
-		{
 			return "Деталь не найдена";
-		}
-
+		
 		var replacement = new Domain.Models.PartReplacement(car, part, body.Date);
 		await partReplacementRepository.AddAsync(replacement);
 

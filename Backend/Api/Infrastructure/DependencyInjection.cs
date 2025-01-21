@@ -15,7 +15,7 @@ public static class DependencyInjection
 	public static void AddInfrastructure(this IServiceCollection services)
 	{
 		services.AddDbContext<AppDbContext>(options =>
-			options.UseNpgsql("Host=postgres;Database=postgres;User Id=postgres;Password=postgres;Port=5432"));
+			options.UseNpgsql("Host=localhost;Database=postgres;User Id=postgres;Password=postgres;Port=5432"));
 
 		services.AddScoped<ICarService, CarService>();
 		services.AddScoped<IPartService, PartService>();
